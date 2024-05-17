@@ -1,4 +1,5 @@
 # practica5
+Codigo para calcular la distnacia entre 2 vertices 
 Este código implementa una clase Graph que representa un grafo no dirigido utilizando una lista de adyacencia. Aquí está un resumen de lo que hace:
 addVertex(V v): Añade un vértice al grafo si no está presente. Retorna true si el vértice se añadió correctamente, o false si ya estaba presente.
 addEdge(V v1, V v2): Añade un arco entre dos vértices al grafo. Si alguno de los vértices no está presente, se añade. Retorna true si se añadió el arco correctamente, o false si el arco ya estaba presente.
