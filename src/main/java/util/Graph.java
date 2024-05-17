@@ -3,18 +3,20 @@ package main.java.util;
 import java.util.*;
 
 public class Graph<V> {
-
-    // Lista de adyacencia.
+    //un hashmap es como una estanteria cada cajon tiene un valor y cada valor una llave , con la llave accedes al valor 
+    // Lista de adyacencia:forma de representar un grafo en el que sus vertices tienen asociada una lista con sus adyacentes
     private Map<V, Set<V>> adjacencyList = new HashMap<>();
 
     /**
-     * Añade un vértice al grafo si no está presente.
+     * Añade un vértice al grafo si no está presente y si lo esta no hace nada .
      *
      * @param v el vértice a añadir.
      * @return `true` si el vértice se añadió correctamente, `false` si ya estaba presente.
      */
+    //la V es el tipo (vertex) y la v seria el nombre dle parametro que se va a meter 
     public boolean addVertex(V v) {
         if (!adjacencyList.containsKey(v)) { // Verifica si el vértice ya está presente
+            //aqui ha metido un nuevo cajon con clave v que guarda el valor de sus vertices adyacentes
             adjacencyList.put(v, new HashSet<>()); // Añade el vértice al mapa
             return true; // Indica que se añadió el vértice correctamente
         }
@@ -46,6 +48,7 @@ public class Graph<V> {
      * @return conjunto de vértices adyacentes.
      */
     public Set<V> obtainAdjacents(V v) {
+        //getordefault lo que hace es que si no encuentra la clave v en el mapa devuelve un conjunto vacio y si la encuentra de la lista de adyacentes
         return adjacencyList.getOrDefault(v, Collections.emptySet()); // Retorna los vértices adyacentes o un conjunto vacío si el vértice no está presente
     }
 
@@ -68,7 +71,8 @@ public class Graph<V> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (V v : adjacencyList.keySet()) {
-            sb.append(v.toString()).append(": ").append(adjacencyList.get(v).toString()).append("\n"); // Construye la representación de cadena de la lista de adyacencia
+            sb.append(v.toString()).append(": ").append(adjacencyList.get(v).toString()).append("\n"); 
+            // Construye la representación de cadena de la lista de adyacencia
         }
         return sb.toString();
     }
@@ -85,7 +89,9 @@ public class Graph<V> {
             return null; // Si alguno de los vértices no está presente, no hay camino
         }
 
+        //la linked list guarda nodos que tienen un valor y un puntero al siguiente nodo
         Queue<V> queue = new LinkedList<>();
+        //el predecesor de ese vertice
         Map<V, V> predecessors = new HashMap<>();
         Set<V> visited = new HashSet<>();
 
@@ -93,7 +99,9 @@ public class Graph<V> {
         visited.add(v1);
         predecessors.put(v1, null); // El vértice de inicio no tiene predecesor
 
+        //mientras la cola no este vacia
         while (!queue.isEmpty()) {
+            //poll devuelve el primer elemento de la cola y lo elimina
             V current = queue.poll();
 
             if (current.equals(v2)) {
